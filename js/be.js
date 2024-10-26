@@ -44,10 +44,8 @@ function setup() {
 function draw() {
     background("#343434");
 
-    // 初始菌团
     juntuan(width / 2, height / 2, 50, b[0], dom[0]);
 
-    // 生成鼠标点击产生的菌团
     if (iz.length != 0) {
         for (let a = 0; a <= iz.length - 1; a++) {
             juntuan(mousex[a], mousey[a], size[a], b[a + 1], dom[a + 1]);
@@ -60,11 +58,9 @@ function juntuan(x, y, n, br, dr) {
     noStroke();
     translate(x, y);
 
-    // 这里生成该菌团的局部颜色数组
     let localGray = [];
     for (let i = 0; i < n; i++) {
         localGray[i] = color(map(i, 0, n, 40, 125));
-        // 从深到浅的灰度映射
         let r = red(localGray[i]);
         let g = green(localGray[i]);
         let b = blue(localGray[i]);
@@ -74,7 +70,7 @@ function juntuan(x, y, n, br, dr) {
         fill(r, g, b);
 
         if (c[br][i] == -100) {
-            xc[br][i] = random(-dr, dr); // 初始化菌团的x和y偏移
+            xc[br][i] = random(-dr, dr);
             yc[br][i] = random(-dr, dr);
             c[br][i] = 11;
         } else if (c[br][i] > 10 && c[br][i] < dr + 20) {
@@ -98,8 +94,8 @@ function mousePressed() {
     for (let i = 0; i < 100; i++) {
         newC[i] = -100;
         newZeng[i] = random(0.3, 0.5);
-        newXc[i] = random(-30, 30); // 初始化随机位置
-        newYc[i] = random(-30, 30); // 初始化随机位置
+        newXc[i] = random(-30, 30);
+        newYc[i] = random(-30, 30);
     }
 
     mousex.push(mouseX);
@@ -107,10 +103,10 @@ function mousePressed() {
     iz.push(b);
     size.push(random(30, 50));
 
-    zengzong.push(newZeng); // 每次独立生成新的 zeng 数组
-    c.push(newC); // 每次独立生成新的 c 数组
-    xc.push(newXc); // 每次独立生成新的 xc 数组
-    yc.push(newYc); // 每次独立生成新的 yc 数组
+    zengzong.push(newZeng);
+    c.push(newC);
+    xc.push(newXc);
+    yc.push(newYc);
 
     b.push(b.length);
     dom.push(random(10, 30));
